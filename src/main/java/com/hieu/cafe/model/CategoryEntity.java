@@ -9,4 +9,10 @@ public class CategoryEntity extends BaseEntity {
     private String name;
     private String description;
     //No need for id/createdAt - inherited!
+
+    public String getName() {
+        return this.name;
+    }
+
 }
+
