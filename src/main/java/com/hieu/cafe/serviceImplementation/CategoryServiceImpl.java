@@ -3,8 +3,6 @@ package com.hieu.cafe.serviceImplementation;
 import com.hieu.cafe.model.CategoryEntity; //Entity Class
 import com.hieu.cafe.repository.CategoryRepository; //Database operations
 import com.hieu.cafe.service.CategoryService; //Service interface
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service; //Marks this as a service layer
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +11,19 @@ import java.util.Optional;
 
 //Business layer
 
-@Slf4j
+
 @Service
-@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
+    //replace @Slf4j lombok (failed to handle the logger) with Manual Logger + Constructor Injection
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CategoryServiceImpl.class);
+
     private final CategoryRepository categoryRepository;
+
+    // Add this constructor
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     @Transactional  // Add this for atomic operation
