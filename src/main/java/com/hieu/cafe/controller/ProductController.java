@@ -1,4 +1,4 @@
 package com.hieu.cafe.controller;
 
-public class categoryController {
+public class ProductController {
 }
