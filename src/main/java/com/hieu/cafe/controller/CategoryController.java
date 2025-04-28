@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -56,11 +59,17 @@ public class CategoryController {
         }
     }
 
+    @PostMapping("/test")
+    public ResponseEntity<?> testEndpoint(@RequestBody Map<String, Object> request) {
+        return ResponseEntity.ok(request); // Echo back the input
+    }
+
     //Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>
     deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
         return ResponseEntity.noContent().build();
+
     }
 }
