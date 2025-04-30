@@ -1,0 +1,27 @@
+2025-04-30T13:55:34.554-04:00 ERROR 2280 --- [hieu.cafe] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.com.hieu.cafe' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.com.hieu.cafe
+    Value: "DEBUG  # Enable debug logs for your package"
+    Origin: class path resource [application.properties] - 21:29
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.DEBUG  # Enable debug logs for your package)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+

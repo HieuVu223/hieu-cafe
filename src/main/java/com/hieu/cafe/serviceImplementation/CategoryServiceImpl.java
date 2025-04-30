@@ -55,13 +55,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryEntity updateCategory(Long id, CategoryEntity updatedCategory) {
-        return categoryRepository.findById(id)
-                .map(category -> {
-                    category.setName(updatedCategory.getName());
+        return categoryRepository.findById(id)//find the category
+                .map(category -> { // if found, update it
+                    //Only update non-null field from the request
+                    CategoryEntity existing = categoryRepository.findById(id) //find the category
+                            .orElseThrow(() -> new IllegalArgumentException("Category not found!"));
+                    //Copy ALL fields including nulls
+                    existing.setName(updatedCategory.getName());//overwrite fields
+                    existing.setDescription(updatedCategory.getDescription());
+
                     // Add other fields to update as needed
-                    return categoryRepository.save(category);
+                    return categoryRepository.save(category);//save changes
                 })
-                .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Category not found with id: " + id)); // Throw errors if not found
     }
 
     @Override

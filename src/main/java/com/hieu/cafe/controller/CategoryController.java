@@ -23,13 +23,33 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+
     //Create
-    @PostMapping
-    public ResponseEntity<CategoryEntity>
-    createCategory(@RequestBody CategoryEntity category){
-        CategoryEntity savedCategory = categoryService.saveCategory(category);
-        return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
+    @PostMapping//accept data from the front-end (as JSON)
+    public ResponseEntity<?> createCategory(@RequestBody CategoryEntity category) {
+        // 1. Validation (80% of common issues)
+        if (category.getName() == null || category.getName().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Category name is required");
+        }
+
+        try {
+            // 2. Business Logic
+            CategoryEntity savedCategory = categoryService.saveCategory(category); // save the data
+
+            // 3. Success Response
+            return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
+
+        } catch (Exception e) {
+            // 4. Error Handling (Log for debugging)
+            System.err.println("Error saving category: " + e.getMessage());
+
+            // 5. User-friendly error
+            return ResponseEntity.internalServerError()
+                    .body("Failed to create category. Please try again.");
+        }
     }
+
+
 
     //Read (All)
     @GetMapping
@@ -51,6 +71,10 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity <CategoryEntity>
     updateCategory(@PathVariable Long id, @RequestBody CategoryEntity updatedCategory){
+
+        // Debug: Log the incoming payload
+        System.out.println("Incoming description: " + updatedCategory.getDescription());
+
         try {
             CategoryEntity category = categoryService.updateCategory(id, updatedCategory);
             return ResponseEntity.ok(category);
