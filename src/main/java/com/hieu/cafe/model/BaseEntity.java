@@ -1,15 +1,13 @@
 package com.hieu.cafe.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 
 @MappedSuperclass
-@Data
-
 
 public abstract class BaseEntity {
     @Id
@@ -22,4 +20,6 @@ public abstract class BaseEntity {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

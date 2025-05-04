@@ -54,6 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryEntity updateCategory(Long id, CategoryEntity updatedCategory) {
         return categoryRepository.findById(id)//find the category
                 .map(category -> { // if found, update it
@@ -71,6 +72,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
