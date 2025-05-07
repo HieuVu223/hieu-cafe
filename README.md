@@ -1,14 +1,34 @@
-# hieu-cafe
-A. README.md
+# ☕ Cafe Management System  
+*A full-stack application for managing coffee shop inventory, categories, and products with Spring Boot backend and MySQL database.*  
 
-Project Description: "A streamlined coffee shop management system for inventory and billing."
+---
 
-Tech Stack: Spring Boot, Thymeleaf, MySQL, OpenCSV.
+## 🛠️ **Technology Stack**  
+| **Layer**       | **Technology**          | **Purpose**                              |  
+|------------------|-------------------------|------------------------------------------|  
+| **Frontend**     | Vanilla JS (ES Modules) | Dynamic UI with Bootstrap 5               |  
+| **Backend**      | Spring Boot 3.x         | REST API development (Java 17+)          |  
+| **Database**     | MySQL 8                 | Persistent data storage                  |  
+| **ORM**          | Spring Data JPA         | Database interactions                    |  
+| **Build Tool**   | Maven                   | Dependency management & packaging        |  
+| **API Docs**     | Swagger UI              | Interactive API documentation            |  
+| **Styling**      | Bootstrap 5             | Responsive layout & components            |  
 
-Setup Guide:
+---
 
-bash
-
-Copy
-git clone <repo>   mvn spring-boot:run   
-Configure application.properties for MySQL
+## 🌐 **Architecture Overview**  
+### **Frontend**  
+- **Modular JavaScript**  
+  - ES Modules (`categories.js`, `products.js`) for separation of concerns.  
+  - Shared utilities (`escapeHtml()` in `shared.js`) for XSS protection.  
+- **Dynamic UI**  
+  - Bootstrap modals for CRUD operations.  
+  - Event delegation for efficient button handling:  ```javascript  
+    tableBody.addEventListener('click', handleCategoryActions);  
+    ```  
+- **API Integration**  
+  ```javascript  
+  await fetch('/api/categories', { 
+    method: 'POST', 
+    headers: { 'Content-Type': 'application/json' } 
+  });  
