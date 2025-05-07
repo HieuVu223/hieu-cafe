@@ -14,14 +14,14 @@
             <ul class="nav flex-column">
                 <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Dashboard</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link text-white active">Manage Category</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Manage Product</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link text-white active">Manage Product</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Manage Order</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link text-white">View Bill</a></li>
                 <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Manage Users</a></li>
             </ul>
         </div>
 
-        <!-- Main Content -->
+        <!-- Category - Main Content -->
         <div class="col-md-10 p-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Manage Category</h2>
@@ -42,6 +42,45 @@
                 <!-- JavaScript will populate this -->
                 </tbody>
             </table>
+
+            <!-- Product - Main Content -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Manage Product</h2>
+                <button id="addProductBtn" class="btn btn-primary">+ Add Product</button>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="mb-3">
+                <label for="productFilter" class="visually-hidden">Filter products</label>
+                <input type="text" id="productFilter" class="form-control" placeholder="Filter products...">
+            </div>
+
+            <!-- Product Table -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="productTableBody">
+                <!-- Sample row (will be populated by JS) -->
+                <tr>
+                    <td>Sprite</td>
+                    <td>Cold Drink</td>
+                    <td>Product to drink</td>
+                    <td>$25</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning me-2">Edit</button>
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
@@ -76,46 +115,6 @@
 </div>
 
 
-<!-- Product - Main Content -->
-<div class="col-md-10 p-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Manage Product</h2>
-        <button id="addProductBtn" class="btn btn-primary">+ Add Product</button>
-    </div>
-
-    <!-- Filter Section -->
-    <div class="mb-3">
-        <label for="productFilter" class="visually-hidden">Filter products</label>
-        <input type="text" id="productFilter" class="form-control" placeholder="Filter products...">
-    </div>
-
-    <!-- Product Table -->
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody id="productTableBody">
-        <!-- Sample row (will be populated by JS) -->
-        <tr>
-            <td>Sprite</td>
-            <td>Cold Drink</td>
-            <td>Product to drink</td>
-            <td>$25</td>
-            <td>
-                <button class="btn btn-sm btn-warning me-2">Edit</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
 
 <!-- Add/Edit Product Modal -->
 <div class="modal fade" id="productModal" tabindex="-1">
@@ -130,7 +129,7 @@
                     <input type="hidden" id="productId">
                     <div class="mb-3">
                         <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" required>
+                        <input type="text" class="form-control" id="productName" name = "productName" required>
                     </div>
                     <div class="mb-3">
                         <label for="productCategory" class="form-label">Category</label>

@@ -26,14 +26,12 @@ async function loadCategories() {
 function renderCategories(categories) {
     tableBody.innerHTML = '';
 
-    // Validate categories array
     if (!Array.isArray(categories)) {
         console.error('Invalid categories data:', categories);
         categories = [];
     }
 
     categories.forEach((category, index) => {
-        // Ensure required fields exist
         const safeCategory = {
             id: category.id || '',
             name: category.name || '',
@@ -42,22 +40,21 @@ function renderCategories(categories) {
 
         const row = document.createElement('tr');
         row.innerHTML = `
-    <td>${index + 1}</td>
-    <td>${escapeHtml(category.name || '')}</td>
-    <td>${escapeHtml(category.description || '')}</td>
-    <td class="action-btns">
-        <button data-id="${category.id || ''}" 
-                data-name="${escapeHtml(category.name || '')}" 
-                data-description="${escapeHtml(category.description || '')}"
-                class="edit-category-btn btn btn-sm btn-warning me-2">Edit</button>
-        <button data-id="${category.id || ''}" 
-                class="delete-category-btn btn btn-sm btn-danger">Delete</button>
-    </td>
+            <td>${index + 1}</td>
+            <td>${escapeHtml(category.name || '')}</td>
+            <td>${escapeHtml(category.description || '')}</td>
+            <td class="action-btns">
+                <button data-id="${category.id || ''}" 
+                        data-name="${escapeHtml(category.name || '')}" 
+                        data-description="${escapeHtml(category.description || '')}"
+                        class="edit-category-btn btn btn-sm btn-warning me-2">Edit</button>
+                <button data-id="${category.id || ''}" 
+                        class="delete-category-btn btn btn-sm btn-danger">Delete</button>
+            </td>
         `;
         tableBody.appendChild(row);
     });
 
-    // Event delegation for dynamic buttons
     tableBody.addEventListener('click', handleCategoryActions);
 }
 
@@ -102,7 +99,6 @@ async function saveCategory() {
 }
 
 function editCategory(id, name, description) {
-    // 1. Safely get all required elements
     const elements = {
         idField: document.getElementById('categoryId'),
         nameField: document.getElementById('categoryName'),
@@ -110,19 +106,16 @@ function editCategory(id, name, description) {
         titleElement: document.getElementById('modalTitle')
     };
 
-    // 2. Validate elements before use
     if (!Object.values(elements).every(el => el)) {
         console.error('Missing modal elements:', elements);
-        return; // or throw new Error('Required modal elements not found');
+        return;
     }
 
-    // 3. Safe assignment with fallbacks
     elements.idField.value = id || '';
     elements.nameField.value = name || '';
     elements.descField.value = description || '';
     elements.titleElement.textContent = 'Edit Category';
 
-    // 4. Verify modal exists
     if (typeof modal?.show === 'function') {
         modal.show();
     } else {
