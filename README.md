@@ -23,9 +23,7 @@
   - Shared utilities (`escapeHtml()` in `shared.js`) for XSS protection.  
 - **Dynamic UI**  
   - Bootstrap modals for CRUD operations.  
-  - Event delegation for efficient button handling: ``javascript  
-    tableBody.addEventListener('click', handleCategoryActions);  
-    ``  
+  - Event delegation for efficient button handling: `javascript tableBody.addEventListener('click', handleCategoryActions);`  
 - **API Integration**  
   ```javascript  
   await fetch('/api/categories', { 
